@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Font variables set by next/font on <html> */
+@theme inline {
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+}
+
+/* Brand colors → generate Tailwind utilities: bg-accent, text-accent, etc. */
+@theme {
+  --color-accent: #00C9A4;
+  --color-accent-dark: #00A887;
+}
+
+/* ── Design tokens ── */
+:root {
+  --bg: #060D10;
+  --bg-2: #0C1C1F;
+  --muted: rgba(255, 255, 255, 0.58);
+  --muted-light: #6B7280;
+  --accent-bg: rgba(0, 201, 164, 0.10);
+  --accent-border: rgba(0, 201, 164, 0.25);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-light: #E5E7EB;
+  --max-w: 1200px;
+  --section-pad: clamp(80px, 12vh, 160px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: auto; }
+
+body {
+  background-color: var(--bg);
+  color: #fff;
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(0, 201, 164, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.line-grid {
+  background-image:
+    linear-gradient(rgba(0, 201, 164, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 201, 164, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes aurora {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+.aurora-bg {
+  background: linear-gradient(135deg, #060D10 0%, #0a1e1b 30%, #051412 60%, #060D10 100%);
+  background-size: 300% 300%;
+  animation: aurora 10s ease infinite;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #00C9A4;
+}
+
+.section-wrap {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+  padding-block: var(--section-pad);
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(0, 201, 164, 0.35); border-radius: 3px; }
+
+@media (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+}
